@@ -1,5 +1,5 @@
 import { connectMongoDB } from "@/lib/config/dbConfig";
-import User from "@/lib/config/models/auth";
+import User from "@/lib/config/models/user";
 import bcryptjs from "bcryptjs";
 import { NextResponse, NextRequest } from "next/server";
 import validator from "validator";

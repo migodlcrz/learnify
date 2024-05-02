@@ -21,7 +21,6 @@ const UserInfo = () => {
           </div>
           <button
             onClick={() => {
-              router.push("/");
               signOut();
             }}
             className="bg-green-700 text-white font-bold cursor-pointer py-2 hover:bg-green-800 hover:text-slate-200"

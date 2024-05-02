@@ -2,8 +2,9 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { connectMongoDB } from "@/lib/config/dbConfig";
-import User from "@/lib/config/models/auth";
+import User from "@/lib/config/models/user";
 import bcryptjs from "bcryptjs";
+import Google from "next-auth/providers/google";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -57,7 +58,7 @@ export const authOptions: NextAuthOptions = {
         session.user.email = token.email;
         session.user.name = token.name;
       }
-      console.log("SESSION: ", session);
+      // console.log("SESSION: ", session);
       return session;
     },
   },

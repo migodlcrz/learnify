@@ -44,7 +44,6 @@ const LoginForm = () => {
 
       if (response?.error) {
         return console.log("ERROR");
-        console.log(response);
       }
 
       console.log("SUCCESS");
