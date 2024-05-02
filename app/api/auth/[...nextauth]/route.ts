@@ -4,7 +4,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { connectMongoDB } from "@/lib/config/dbConfig";
 import User from "@/lib/config/models/user";
 import bcryptjs from "bcryptjs";
-import Google from "next-auth/providers/google";
+import GoogleProvider from "next-auth/providers/google";
+// import Google from "next-auth/providers/google";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -38,6 +39,10 @@ export const authOptions: NextAuthOptions = {
         }
       },
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    }),
   ],
 
   session: {
@@ -45,6 +50,34 @@ export const authOptions: NextAuthOptions = {
   },
 
   callbacks: {
+    async signIn({ user, account }: { user: any; account: any }) {
+      if (account.provider === "google") {
+        console.log("PUMASOK SA GOOGLE CALLBACK");
+        try {
+          const { name, email } = user;
+          await connectMongoDB();
+          const exist = await User.findOne({ email });
+
+          if (exist) {
+            return user;
+          }
+
+          const newUser = new User({
+            name: name,
+            email: email,
+          });
+
+          const savedUser = await newUser.save();
+
+          if (savedUser.ok) {
+            return user;
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      return user;
+    },
     async jwt({ token, user }) {
       if (user) {
         token.email = user.email;

@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { signIn } from "next-auth/react";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 interface LoginForm {
   email: string;
@@ -50,21 +52,6 @@ const LoginForm = () => {
       console.log(response);
 
       router.push("/dashboard");
-
-      // if (response.ok) {
-      //   toast.success(json.message, {
-      //     position: "top-left",
-      //   });
-      //   clearForm();
-      //   setLoading(false);
-      //   router.push("/login");
-      // } else {
-      //   toast.error(json.error, {
-      //     position: "top-left",
-      //   });
-      //   clearForm();
-      //   setLoading(false);
-      // }
     } catch (error) {
       console.log(error);
     }
@@ -131,13 +118,29 @@ const LoginForm = () => {
                 <span className="text-black font-bold">Login</span>
               )}
             </button>
+          </form>
+          <div className="flex justify-center items-center w-full gap-3 py-3">
+            <div className="border-b-2 border-cerulean py-2 w-full px-6"></div>
+            <div className="mt-3 text-cerulean">or</div>
+            <div className="border-b-2 border-cerulean py-2 w-full px-6"></div>
+          </div>
+          <div className="my-3">
+            <button
+              onClick={() => signIn("google")}
+              className="btn w-full bg-slate-300 rounded-none"
+            >
+              <FcGoogle className="h-7 w-7" />
+              <label htmlFor="">Sign in with google</label>
+            </button>
+          </div>
+          <div className="w-full text-center">
             <Link className="text-sm mt-3 text-center" href={"/register"}>
               {"Don't have an account?"}{" "}
               <span className="text-cerulean hover:text-emerald-500">
                 Register
               </span>
             </Link>
-          </form>
+          </div>
         </div>
       </div>
     </div>

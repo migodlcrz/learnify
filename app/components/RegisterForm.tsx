@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { MdKeyboardArrowLeft } from "react-icons/md";
+import { signIn } from "next-auth/react";
+import { FcGoogle } from "react-icons/fc";
 
 interface RegForm {
   name: string;
@@ -137,11 +139,29 @@ const RegisterForm = () => {
                 "Register"
               )}
             </button>
+          </form>
+          <div className="flex justify-center items-center w-full gap-3 py-3">
+            <div className="border-b-2 border-cerulean py-2 w-full px-6"></div>
+            <div className="mt-3 text-cerulean">or</div>
+            <div className="border-b-2 border-cerulean py-2 w-full px-6"></div>
+          </div>
+          <div className="my-3">
+            <button
+              onClick={() => signIn("google")}
+              className="btn w-full bg-slate-300 rounded-none"
+            >
+              <FcGoogle className="h-7 w-7" />
+              <label htmlFor="">Sign Up with google</label>
+            </button>
+          </div>
+          <div className="w-full text-center">
             <Link className="text-sm mt-3 text-center" href={"/login"}>
               {"Already have an account?"}{" "}
-              <span className="text-cerulean">Login</span>
+              <span className="text-cerulean hover:text-emerald-500">
+                Login
+              </span>
             </Link>
-          </form>
+          </div>
         </div>
       </div>
     </div>

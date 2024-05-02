@@ -10,7 +10,7 @@ export async function middleware(req: NextRequest) {
     secret: process.env.NEXTAUTH_SECRET,
   });
 
-  console.log("PATHS: ", path);
+  // console.log("PATHS: ", path);
 
   if (path === "/" || path === "/login" || path === "/register") {
     // console.log("PULIC PATH : ", publicPaths);
