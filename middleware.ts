@@ -10,6 +10,8 @@ export async function middleware(req: NextRequest) {
     secret: process.env.NEXTAUTH_SECRET,
   });
 
+  console.log("TOKEN: ", token);
+
   // console.log("PATHS: ", path);
 
   if (path === "/" || path === "/login" || path === "/register") {

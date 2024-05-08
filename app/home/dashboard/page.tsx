@@ -3,8 +3,8 @@ import React from "react";
 
 const Dashboard = () => {
   return (
-    <div className="bg-emerald-300">
-      <UserInfo />
+    <div className="flex w-screen h-screen">
+      <div>Hello</div>
     </div>
   );
 };

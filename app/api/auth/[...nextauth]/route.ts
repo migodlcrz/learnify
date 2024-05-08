@@ -52,7 +52,6 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async signIn({ user, account }: { user: any; account: any }) {
       if (account.provider === "google") {
-        console.log("PUMASOK SA GOOGLE CALLBACK");
         try {
           const { name, email } = user;
           await connectMongoDB();
